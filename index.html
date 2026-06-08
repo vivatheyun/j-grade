@@ -1,32 +1,76 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기(내클라이언트ID)</title>
-    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=4gr80o1ge3"></script>
-</head>
-
-<body>
-    <div id="map" style="width:100%;height:800px;"></div>
-
-    <script>
-        var mapOptions = {
-            center: new naver.maps.LatLng(37.3595905, 127.105399),
-            zoom: 10
-        };
-
-        var map = new naver.maps.Map('map', mapOptions);
-
-        window.navermap_authFailure = function () {
-            // 인증 실패 시 처리 코드 작성
-            // ...
-            alert('인증 실패');
-        }
+    
+    <!-- SEO Optimization -->
+    <title>등급제 인원수 보기 | J-GRADE 성적 등급 계산기</title>
+    <meta name="description" content="학생수를 입력하여 5등급 및 9등급 상대평가 등급별 인원수와 석차 범위를 즉시 확인하세요. 정확한 누적 백분위 기반 성적 산출 도구.">
+    <meta name="keywords" content="등급계산기, 5등급제, 9등급제, 상대평가, 학생순위, 성적계산, J-GRADE">
+    <link rel="canonical" href="https://j-grade.pages.dev/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="등급제 인원수 보기 | J-GRADE">
+    <meta property="og:description" content="손쉬운 등급별 인원수 확인 서비스">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://j-grade.pages.dev/">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "J-GRADE 등급 계산기",
+      "description": "학생 수에 따른 상대평가 등급별 인원수 및 석차 계산 도구",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All"
+    }
     </script>
-</body>
 
+    <!-- Styles and Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" aria-label="테마 변경">🌓</button>
+
+    <div class="container">
+        <main class="calculator-card">
+            <h1>등급제 인원수 보기</h1>
+            
+            <div class="input-group">
+                <label for="studentCount">학생 수 (명)</label>
+                <input type="number" id="studentCount" placeholder="예: 300" min="1" step="1">
+            </div>
+
+            <div class="input-group">
+                <label for="gradeSystem">등급 체계 선택</label>
+                <select id="gradeSystem">
+                    <option value="5" selected>5등급제</option>
+                    <option value="9">9등급제</option>
+                </select>
+            </div>
+
+            <button id="calculateBtn">확인</button>
+
+            <section class="result-section" id="resultSection">
+                <table id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>등급</th>
+                            <th>학생순위 (누적)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultBody">
+                        <!-- 결과 데이터가 여기에 동적으로 추가됩니다 -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
