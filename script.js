@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentRankLimit < prevRankLimit) currentRankLimit = prevRankLimit;
             if (index === thresholds.length - 1) currentRankLimit = studentCount;
 
-            const gradeName = `${index + 1}등급`;
+            const gradeName = `${index + 1}등급(${percentage}%)`;
             let rankRange = '';
 
             if (currentRankLimit === prevRankLimit) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${gradeName}</td>
+                <td><strong>${gradeName}</strong></td>
                 <td>${rankRange}</td>
             `;
             resultBody.appendChild(row);
